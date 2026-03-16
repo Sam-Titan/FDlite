@@ -39,7 +39,7 @@ const Navbar = () => {
         {/* Logo & Brand - Left */}
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
           <img 
-            src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=100&auto=format&fit=crop" 
+            src="https://raw.githubusercontent.com/Sam-Titan/FDlite/main/naari-tive%20(2000%20x%202000%20px)%20(6).png" 
             alt="FDlite Logo" 
             className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover shadow-sm"
             referrerPolicy="no-referrer"
@@ -150,8 +150,7 @@ const Hero = () => {
             <button className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all hover:shadow-xl hover:-translate-y-1">
               Donate Today <ArrowRight size={20} />
             </button>
-            <a href="#impact" className="text-primary font-bold hover:underline flex items-center justify-center sm:justify-start gap-1">
-              See our impact <span className="text-xl">↓</span>
+          <a href="#impact" className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 transition-all hover:shadow-xl hover:-translate-y-1">              See our impact <span className="text-xl">↓</span>
             </a>
           </div>
         </motion.div>
@@ -166,7 +165,7 @@ const Hero = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl" />
           <div className="relative h-full min-h-[500px] md:min-h-[600px] bg-primary-dark rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl group">
             <img 
-              src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop" 
+              src="https://raw.githubusercontent.com/Sam-Titan/FDlite/main/Image_3.jpeg" 
               alt="Woman Farmer" 
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               referrerPolicy="no-referrer"
