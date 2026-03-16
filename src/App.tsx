@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowRight, 
   Heart, 
@@ -96,8 +96,20 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 flex items-center overflow-hidden">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+    <section id="home" className="relative min-h-screen pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 flex items-center overflow-hidden bg-white">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.25]">
+        <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] h-[250%] md:w-[150%] md:h-[150%]">
+          <iframe
+            className="w-full h-full pointer-events-none scale-110"
+            src="https://www.youtube.com/embed/67nVHGF-XQ0?autoplay=1&mute=1&loop=1&playlist=67nVHGF-XQ0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&cc_lang_pref=en&autohide=1"
+            title="Background Video"
+            allow="autoplay; encrypted-media"
+          ></iframe>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center w-full relative z-10">
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +121,7 @@ const Hero = () => {
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Women-Owned Dairy · Rural India
           </div>
-          <h1 className="text-3xl sm:text-5xl md:text-7xl leading-[1.1] mb-6 md:mb-8 text-ink break-words">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold leading-[1.1] mb-6 md:mb-8 text-ink break-words">
             Empowering <span className="italic text-primary">Women Farmers</span> Across Rural India
           </h1>
           <p className="text-base md:text-xl text-ink-muted mb-8 md:mb-10 max-w-lg leading-relaxed">
@@ -151,12 +163,12 @@ const Hero = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl" />
           <div className="relative aspect-[4/5] bg-primary-dark rounded-[2rem] overflow-hidden shadow-2xl group">
             <img 
-              src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1200&auto=format&fit=crop" 
-              alt="Woman farmer" 
-              className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
+              src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop" 
+              alt="Woman Farmer" 
+              className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary/20 to-transparent" />
             
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
@@ -171,25 +183,21 @@ const Hero = () => {
             </motion.div>
 
             {/* Floating Badges Container */}
-            <div className="absolute top-4 right-4 md:top-12 md:right-12 z-20 flex flex-col items-end gap-3 md:gap-6">
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="bg-accent-blue text-white p-3 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl flex flex-col items-center text-center border border-white/20 backdrop-blur-sm"
-              >
-                <div className="text-xl md:text-4xl font-bold mb-0.5 md:mb-1">₹18.6L+</div>
+            <motion.div 
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-4 right-4 md:top-12 md:right-12 z-20 flex flex-col items-end gap-3 md:gap-6"
+            >
+              <div className="bg-accent-blue text-white p-3 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl flex flex-col items-center text-center border border-white/20 backdrop-blur-sm">
+                <div className="text-xl md:text-4xl font-bold mb-0.5 md:mb-1">$22,000+</div>
                 <div className="text-[8px] md:text-sm opacity-90 uppercase tracking-[0.1em] md:tracking-[0.2em] font-black">Raised this year</div>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="bg-primary text-white px-3 py-1.5 md:px-8 md:py-4 rounded-full shadow-2xl flex items-center justify-center gap-2 md:gap-3 border border-white/20 backdrop-blur-sm"
-              >
+              <div className="bg-primary text-white px-3 py-1.5 md:px-8 md:py-4 rounded-full shadow-2xl flex items-center justify-center gap-2 md:gap-3 border border-white/20 backdrop-blur-sm">
                 <span className="text-sm md:text-2xl">🌾</span>
                 <span className="font-black text-[10px] md:text-lg tracking-wider">Latur, Maharashtra</span>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
@@ -208,14 +216,16 @@ const ProblemSection = () => {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto bg-primary-dark rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 text-white relative overflow-hidden">
-        <div className="relative z-10">
-          <span className="text-primary-light/60 uppercase tracking-widest font-bold text-xs mb-4 block">The Problem</span>
-          <h2 className="text-3xl md:text-6xl mb-8 max-w-2xl leading-tight">Women farmers produce the milk. <span className="italic opacity-70">Middlemen keep the profit.</span></h2>
-          <p className="text-lg md:text-xl text-white/70 mb-12 md:mb-16 max-w-3xl leading-relaxed">
-            In rural India, millions of women are the primary workforce in dairy farming, yet they remain economically invisible. Exploitative middlemen and lack of infrastructure keep them trapped in a cycle of poverty.
-          </p>
+        <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div>
+            <span className="text-primary-light/60 uppercase tracking-widest font-bold text-xs mb-4 block">The Problem</span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl mb-8 leading-tight">Women farmers produce the milk. <span className="italic opacity-70">Middlemen keep the profit.</span></h2>
+            <p className="text-lg md:text-xl text-white/70 mb-0 leading-relaxed">
+              In rural India, millions of women are the primary workforce in dairy farming, yet they remain economically invisible. Exploitative middlemen and lack of infrastructure keep them trapped in a cycle of poverty.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 gap-2 md:gap-6">
             {problems.map((p, i) => (
               <motion.div 
                 key={i}
@@ -223,11 +233,11 @@ const ProblemSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-6 md:p-8 rounded-2xl md:rounded-3xl hover:bg-white/20 transition-colors group"
+                className="glass-card p-4 md:p-8 rounded-xl md:rounded-3xl hover:bg-white/20 transition-colors group"
               >
-                <div className="text-3xl md:text-4xl mb-4 md:mb-6 group-hover:scale-110 transition-transform">{p.icon}</div>
-                <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">{p.title}</h3>
-                <p className="text-white/60 text-sm md:text-base leading-relaxed">{p.desc}</p>
+                <div className="text-xl md:text-4xl mb-2 md:mb-6 group-hover:scale-110 transition-transform">{p.icon}</div>
+                <h3 className="text-[10px] md:text-2xl font-bold mb-1 md:mb-3 leading-tight">{p.title}</h3>
+                <p className="text-white/60 text-[8px] md:text-base leading-tight md:leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -235,6 +245,99 @@ const ProblemSection = () => {
         
         {/* Decorative background element */}
         <div className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 bg-primary/20 blur-[80px] md:blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
+      </div>
+    </section>
+  );
+};
+
+const JourneySection = () => {
+  const steps = [
+    {
+      title: "From our farms",
+      desc: "Before dawn, the work begins — women tend to their cattle with quiet dedication every single day.",
+      image: "https://images.unsplash.com/photo-1547005327-ef75a6961556?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      title: "Lakshmi Centers",
+      desc: "Women bring fresh milk daily to community-owned collection hubs — fair pricing, transparent records, zero middlemen.",
+      image: "https://images.unsplash.com/photo-1550583760-704c9a42172c?q=80&w=1200&auto=format&fit=crop"
+    },
+    {
+      title: "Pure & Direct",
+      desc: "Every litre of milk represents a family's livelihood — and now, their rightful earnings go directly to them.",
+      image: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1200&auto=format&fit=crop"
+    }
+  ];
+
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % steps.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="py-16 md:py-24 px-4 sm:px-6 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 gap-4 md:gap-20 items-center">
+          <div className="order-1">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-4 md:space-y-12"
+            >
+              {steps.map((step, i) => (
+                <div 
+                  key={i}
+                  className={`transition-all duration-500 cursor-pointer ${active === i ? 'opacity-100 translate-x-1 md:translate-x-2' : 'opacity-30 hover:opacity-50'}`}
+                  onClick={() => setActive(i)}
+                >
+                  <div className="flex items-center gap-2 md:gap-4 mb-1 md:mb-4">
+                    <span className={`w-6 h-6 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-[10px] md:text-xl ${active === i ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
+                      0{i + 1}
+                    </span>
+                    <h3 className="text-sm md:text-3xl font-bold text-ink">{step.title}</h3>
+                  </div>
+                  <p className={`text-[10px] md:text-lg text-ink-muted leading-tight md:leading-relaxed max-w-md ${active === i ? 'block' : 'hidden md:block'}`}>
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          <div className="order-2 relative">
+            <div className="aspect-square md:aspect-[4/5] rounded-2xl md:rounded-[3rem] overflow-hidden shadow-2xl relative">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={active}
+                  src={steps[active].image}
+                  alt={steps[active].title}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+              {steps.map((_, i) => (
+                <div 
+                  key={i}
+                  className={`h-1 rounded-full transition-all duration-300 ${active === i ? 'w-8 bg-primary' : 'w-2 bg-primary/20'}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -299,7 +402,7 @@ const ImpactStats = () => {
         <div className="text-center mb-12 md:mb-16">
           <span className="text-primary uppercase tracking-widest font-bold text-xs md:text-sm mb-4 block">Proven Impact</span>
           <h2 className="text-3xl md:text-5xl text-primary-dark mb-4">Numbers that speak</h2>
-          <p className="text-ink-muted text-sm md:text-base">Every rupee donated translates directly into measurable change.</p>
+          <p className="text-ink-muted text-sm md:text-base">Every dollar donated translates directly into measurable change.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
@@ -363,7 +466,7 @@ const FundraisingProgress = () => {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 bg-primary-dark text-white">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-4xl mb-8 md:mb-12 text-center leading-tight">2025 Fundraising Goal · <span className="italic opacity-70">Expand to 200 Villages</span></h2>
+        <h2 className="text-2xl md:text-4xl mb-8 md:mb-12 text-center leading-tight">2026 Fundraising Goal · <span className="italic opacity-70">Expand to 200 Villages</span></h2>
         
         <div className="bg-white/10 h-4 md:h-6 rounded-full overflow-hidden mb-6 md:mb-8">
           <motion.div 
@@ -379,7 +482,7 @@ const FundraisingProgress = () => {
 
         <div className="grid grid-cols-3 gap-2 md:gap-4 text-center">
           <div>
-            <div className="text-lg md:text-2xl font-bold">₹18.6 Lakh</div>
+            <div className="text-lg md:text-2xl font-bold">$22,000</div>
             <div className="text-[10px] md:text-sm text-white/60 uppercase tracking-widest">Raised</div>
           </div>
           <div>
@@ -387,36 +490,14 @@ const FundraisingProgress = () => {
             <div className="text-[10px] md:text-sm text-white/60 uppercase tracking-widest">Funded</div>
           </div>
           <div>
-            <div className="text-lg md:text-2xl font-bold">₹50 Lakh</div>
+            <div className="text-lg md:text-2xl font-bold">$60,000</div>
             <div className="text-[10px] md:text-sm text-white/60 uppercase tracking-widest">Goal</div>
           </div>
         </div>
 
         <div className="mt-8 md:mt-12 flex items-center justify-between text-[10px] md:text-sm text-white/40 border-t border-white/10 pt-4 md:pt-6 font-bold uppercase tracking-widest">
           <span>347 Donors</span>
-          <span>Goal: Dec 31, 2025</span>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const StoryStrip = () => {
-  return (
-    <section className="py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-r from-primary to-[#FF8C42] text-white">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-        <div className="md:w-2/3">
-          <p className="text-xl md:text-4xl italic font-serif leading-tight">
-            "When I got my first direct payment, I bought textbooks for my children. That was the moment I understood what this program truly meant."
-          </p>
-          <p className="mt-4 md:mt-6 text-white/80 font-bold text-sm md:text-base">— Kavitha B., Dairy Farmer, Latur District</p>
-        </div>
-        <div className="md:w-1/3 text-center md:text-left">
-          <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Real women. Real change.</h3>
-          <p className="text-white/80 text-sm md:text-base mb-6 md:mb-8">Kavitha is one of thousands whose lives have been transformed by fair pricing and financial dignity.</p>
-          <button className="w-full sm:w-auto bg-white text-primary px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all hover:-translate-y-1">
-            Add to their story →
-          </button>
+          <span>Goal: Dec 31, 2026</span>
         </div>
       </div>
     </section>
@@ -497,10 +578,10 @@ const DonateSection = () => {
   const [customAmount, setCustomAmount] = useState('');
 
   const tiers = [
-    { amount: 250, label: "Support 1 Woman Farmer", sub: "1 season of fair pricing" },
-    { amount: 500, label: "Support 2 Farmers", sub: "Market access for two households" },
-    { amount: 1000, label: "Support 4 Farmers", sub: "Popular choice for impact", popular: true },
-    { amount: 5000, label: "Entire Village Dairy Hub", sub: "Lakshmi Center, solar chilling, 50+ women" },
+    { amount: 10, label: "Support 1 Woman Farmer", sub: "1 season of fair pricing" },
+    { amount: 25, label: "Support 2 Farmers", sub: "Market access for two households" },
+    { amount: 50, label: "Support 4 Farmers", sub: "Popular choice for impact", popular: true },
+    { amount: 250, label: "Entire Village Dairy Hub", sub: "Lakshmi Center, solar chilling, 50+ women" },
   ];
 
   const currentAmount = customAmount ? parseInt(customAmount) : selectedTier;
@@ -526,7 +607,7 @@ const DonateSection = () => {
               >
                 <div className="pr-2">
                   <div className="flex items-center gap-2 md:gap-3 mb-1">
-                    <span className="text-lg md:text-2xl font-bold text-primary-dark">₹{tier.amount.toLocaleString()}</span>
+                    <span className="text-lg md:text-2xl font-bold text-primary-dark">${tier.amount.toLocaleString()}</span>
                     {tier.popular && <span className="bg-accent-blue text-white text-[7px] md:text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-full">Popular</span>}
                   </div>
                   <div className="font-bold text-ink text-xs md:text-base">{tier.label}</div>
@@ -544,7 +625,7 @@ const DonateSection = () => {
             <p className="text-xs md:text-base text-ink-muted mb-5 md:mb-8">100% of your donation supports women farmers directly.</p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3 mb-5 md:mb-8">
-              {[250, 500, 1000, 5000, 10000, 25000].map((amt) => (
+              {[10, 25, 50, 100, 250, 500].map((amt) => (
                 <button 
                   key={amt}
                   onClick={() => {
@@ -553,13 +634,13 @@ const DonateSection = () => {
                   }}
                   className={`py-2 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-base transition-all ${selectedTier === amt && !customAmount ? 'bg-primary text-white' : 'bg-primary-light text-primary hover:bg-primary/10'}`}
                 >
-                  ₹{amt.toLocaleString()}
+                  ${amt.toLocaleString()}
                 </button>
               ))}
             </div>
 
             <div className="relative mb-5 md:mb-8">
-              <span className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-lg md:text-2xl font-serif text-primary-dark">₹</span>
+              <span className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-lg md:text-2xl font-serif text-primary-dark">$</span>
               <input 
                 type="number" 
                 placeholder="Custom Amount"
@@ -585,7 +666,7 @@ const DonateSection = () => {
             </div>
 
             <button className="w-full bg-primary hover:bg-primary-dark text-white py-3.5 md:py-5 rounded-xl md:rounded-2xl font-bold text-base md:text-xl flex items-center justify-center gap-2 transition-all hover:shadow-2xl hover:-translate-y-1 mb-5 md:mb-8">
-              <Heart size={18} className="md:w-6 md:h-6" fill="currentColor" /> Donate ₹{currentAmount.toLocaleString()} Now
+              <Heart size={18} className="md:w-6 md:h-6" fill="currentColor" /> Donate ${currentAmount.toLocaleString()} Now
             </button>
 
             <div className="flex items-center justify-center gap-3 md:gap-6 text-[9px] md:text-xs text-ink-muted font-bold uppercase tracking-widest">
@@ -641,7 +722,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 gap-4 md:gap-8">
           {pillars.map((p, i) => (
             <motion.div 
               key={i}
@@ -729,12 +810,12 @@ export default function App() {
       <main className="w-full">
         <Hero />
         <ProblemSection />
+        <JourneySection />
         <LakshmiCenters />
         <ImpactStats />
         <FundraisingProgress />
-        <StoryStrip />
-        <PhotoSlider />
         <DonateSection />
+        <PhotoSlider />
         <About />
       </main>
       <Footer />
