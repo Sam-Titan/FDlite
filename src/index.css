@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "DM Sans", sans-serif;
+
+  --color-primary: #3A7D2C;
+  --color-primary-dark: #1B3F2E;
+  --color-primary-light: #EFF7ED;
+  --color-accent-blue: #1E4FA0;
+  --color-ink: #12291D;
+  --color-ink-muted: #4A7A5A;
+  --color-paper: #FAFFF8;
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.frosted-nav {
+  @apply bg-white/70 backdrop-blur-md border-b border-black/5;
+}
+
+.glass-card {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20;
+}
+
+@keyframes progress-grow {
+  from { width: 0%; }
+  to { width: 37%; }
+}
+
+.animate-progress {
+  animation: progress-grow 1.5s ease-out forwards;
+}
