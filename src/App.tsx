@@ -38,9 +38,12 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between relative">
         {/* Logo & Brand - Left */}
         <div className="flex items-center gap-2 md:gap-3 shrink-0">
-          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white font-serif font-bold text-base md:text-lg">
-            FD
-          </div>
+          <img 
+            src="https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=100&auto=format&fit=crop" 
+            alt="FDlite Logo" 
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover shadow-sm"
+            referrerPolicy="no-referrer"
+          />
           <span className="font-serif font-bold text-lg md:text-xl tracking-tight text-primary-dark">FDlite Foundation</span>
         </div>
 
@@ -98,10 +101,10 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 flex items-center overflow-hidden bg-white">
       {/* Background Video */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.25]">
-        <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] h-[250%] md:w-[150%] md:h-[150%]">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-[0.4]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400%] h-[400%] md:w-[200%] md:h-[200%]">
           <iframe
-            className="w-full h-full pointer-events-none scale-110"
+            className="w-full h-full pointer-events-none scale-200 md:scale-150"
             src="https://www.youtube.com/embed/67nVHGF-XQ0?autoplay=1&mute=1&loop=1&playlist=67nVHGF-XQ0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&cc_lang_pref=en&autohide=1"
             title="Background Video"
             allow="autoplay; encrypted-media"
@@ -161,9 +164,9 @@ const Hero = () => {
           className="relative mt-8 md:mt-0 w-full max-w-[500px] mx-auto md:max-w-none"
         >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl" />
-          <div className="relative aspect-[4/5] bg-primary-dark rounded-[2rem] overflow-hidden shadow-2xl group">
+          <div className="relative h-full min-h-[500px] md:min-h-[600px] bg-primary-dark rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl group">
             <img 
-              src="https://raw.githubusercontent.com/Sam-Titan/FDlite/main/sunita.jpg.jpeg" 
+              src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop" 
               alt="Woman Farmer" 
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               referrerPolicy="no-referrer"
@@ -235,9 +238,9 @@ const ProblemSection = () => {
                 transition={{ delay: i * 0.1 }}
                 className="glass-card p-4 md:p-8 rounded-xl md:rounded-3xl hover:bg-white/20 transition-colors group"
               >
-                <div className="text-xl md:text-4xl mb-2 md:mb-6 group-hover:scale-110 transition-transform">{p.icon}</div>
-                <h3 className="text-[10px] md:text-2xl font-bold mb-1 md:mb-3 leading-tight">{p.title}</h3>
-                <p className="text-white/60 text-[8px] md:text-base leading-tight md:leading-relaxed">{p.desc}</p>
+                <div className="text-2xl md:text-5xl mb-2 md:mb-6 group-hover:scale-110 transition-transform">{p.icon}</div>
+                <h3 className="text-sm md:text-3xl font-bold mb-1 md:mb-3 leading-tight">{p.title}</h3>
+                <p className="text-white/60 text-xs md:text-lg leading-tight md:leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -279,65 +282,72 @@ const JourneySection = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 gap-4 md:gap-20 items-center">
-          <div className="order-1">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4 md:space-y-12"
-            >
-              {steps.map((step, i) => (
-                <div 
-                  key={i}
-                  className={`transition-all duration-500 cursor-pointer ${active === i ? 'opacity-100 translate-x-1 md:translate-x-2' : 'opacity-30 hover:opacity-50'}`}
-                  onClick={() => setActive(i)}
-                >
-                  <div className="flex items-center gap-2 md:gap-4 mb-1 md:mb-4">
-                    <span className={`w-6 h-6 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-[10px] md:text-xl ${active === i ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
-                      0{i + 1}
-                    </span>
-                    <h3 className="text-sm md:text-3xl font-bold text-ink">{step.title}</h3>
-                  </div>
-                  <p className={`text-[10px] md:text-lg text-ink-muted leading-tight md:leading-relaxed max-w-md ${active === i ? 'block' : 'hidden md:block'}`}>
-                    {step.desc}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
+    <section className="relative min-h-screen bg-black overflow-hidden">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={active}
+            src={steps[active].image}
+            alt={steps[active].title}
+            initial={{ opacity: 0, scale: 1.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.2 }}
+            transition={{ duration: 1.8, ease: "easeOut" }}
+            className="w-full h-full object-cover opacity-70"
+            referrerPolicy="no-referrer"
+          />
+        </AnimatePresence>
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
+      </div>
 
-          <div className="order-2 relative">
-            <div className="aspect-square md:aspect-[4/5] rounded-2xl md:rounded-[3rem] overflow-hidden shadow-2xl relative">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={active}
-                  src={steps[active].image}
-                  alt={steps[active].title}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.8 }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-            
-            {/* Progress Bar */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-              {steps.map((_, i) => (
-                <div 
-                  key={i}
-                  className={`h-1 rounded-full transition-all duration-300 ${active === i ? 'w-8 bg-primary' : 'w-2 bg-primary/20'}`}
-                />
-              ))}
-            </div>
-          </div>
+      {/* Content Overlay Layer */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 h-screen flex flex-col justify-center">
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="space-y-8 md:space-y-12"
+          >
+            {steps.map((step, i) => (
+              <div 
+                key={i}
+                className={`transition-all duration-500 cursor-pointer ${active === i ? 'opacity-100 translate-x-4' : 'opacity-20 hover:opacity-40'}`}
+                onClick={() => setActive(i)}
+              >
+                <div className="flex items-center gap-4 md:gap-8 mb-2 md:mb-4">
+                  <span className={`w-10 h-10 md:w-20 md:h-20 rounded-full flex items-center justify-center font-bold text-sm md:text-3xl border ${active === i ? 'bg-white text-black border-white' : 'bg-transparent text-white border-white/30'}`}>
+                    0{i + 1}
+                  </span>
+                  <h3 className="text-2xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter uppercase">{step.title}</h3>
+                </div>
+                <AnimatePresence>
+                  {active === i && (
+                    <motion.p 
+                      initial={{ opacity: 0, height: 0, y: 10 }}
+                      animate={{ opacity: 1, height: 'auto', y: 0 }}
+                      exit={{ opacity: 0, height: 0, y: -10 }}
+                      className="text-sm md:text-2xl text-white/70 font-serif italic leading-relaxed pl-14 md:pl-28 max-w-xl"
+                    >
+                      {step.desc}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </motion.div>
         </div>
+      </div>
+
+      {/* Vertical Progress Indicator */}
+      <div className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
+        {steps.map((_, i) => (
+          <div 
+            key={i}
+            className={`w-1 rounded-full transition-all duration-500 ${active === i ? 'h-16 md:h-24 bg-white' : 'h-4 md:h-6 bg-white/20'}`}
+          />
+        ))}
       </div>
     </section>
   );
