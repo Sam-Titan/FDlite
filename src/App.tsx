@@ -514,9 +514,9 @@ const FundraisingProgress = () => {
 
 const PhotoSlider = () => {
   const slides = [
-    { url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop", title: "Morning Collection at Latur" },
-    { url: "https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=1200&auto=format&fit=crop", title: "Training Session in Solapur" },
-    { url: "https://images.unsplash.com/photo-1590682680695-43b964a3ae17?q=80&w=1200&auto=format&fit=crop", title: "New Lakshmi Center Opening" },
+    { videoId: "H1sRMDt8c34", title: "Morning Collection at Latur" },
+    { videoId: "YIp0Bs8EYCU", title: "Training Session in Solapur" },
+    { videoId: "67nVHGF-XQ0", title: "New Lakshmi Center Opening" },
   ];
   const [current, setCurrent] = useState(0);
 
@@ -539,36 +539,49 @@ const PhotoSlider = () => {
               transition={{ duration: 1 }}
               className="absolute inset-0"
             >
-              <img 
-                src={slide.url} 
-                alt={slide.title} 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white">
+              {/* Iframe wrapper — oversized and shifted up to clip YouTube's title bar */}
+              <div className="absolute -inset-x-2 -top-12 -bottom-2 pointer-events-none">
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${slide.videoId}?autoplay=1&mute=1&loop=1&playlist=${slide.videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`}
+                  title={slide.title}
+                  allow="autoplay; encrypted-media"
+                />
+              </div>
+
+              {/* Top mask — covers any remaining YouTube title/branding */}
+              <div className="absolute top-0 left-0 right-0 h-16 bg-black pointer-events-none z-10" />
+
+              {/* Bottom mask */}
+              <div className="absolute bottom-0 left-0 right-0 h-10 bg-black pointer-events-none z-10" />
+
+              {/* General dark overlay */}
+              <div className="absolute inset-0 bg-black/25 pointer-events-none z-10" />
+
+              {/* Slide title */}
+              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-white pointer-events-none z-20">
                 <h3 className="text-xl md:text-2xl font-bold">{slide.title}</h3>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <button 
+        <button
           onClick={() => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)}
-          className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-30"
         >
           <ChevronLeft size={16} className="md:w-6 md:h-6" />
         </button>
-        <button 
+        <button
           onClick={() => setCurrent((prev) => (prev + 1) % slides.length)}
-          className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-30"
         >
           <ChevronRight size={16} className="md:w-6 md:h-6" />
         </button>
 
         <div className="flex justify-center gap-2 mt-4 md:mt-6">
           {slides.map((_, i) => (
-            <button 
+            <button
               key={i}
               onClick={() => setCurrent(i)}
               className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all ${current === i ? 'w-6 md:w-8 bg-primary' : 'bg-primary/20'}`}
