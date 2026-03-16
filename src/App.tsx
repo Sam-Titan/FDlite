@@ -163,7 +163,7 @@ const Hero = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl" />
           <div className="relative aspect-[4/5] bg-primary-dark rounded-[2rem] overflow-hidden shadow-2xl group">
             <img 
-              src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop" 
+              src="https://raw.githubusercontent.com/Sam-Titan/FDlite/main/sunita.jpg.jpeg" 
               alt="Woman Farmer" 
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               referrerPolicy="no-referrer"
@@ -255,17 +255,17 @@ const JourneySection = () => {
     {
       title: "From our farms",
       desc: "Before dawn, the work begins — women tend to their cattle with quiet dedication every single day.",
-      image: "https://images.unsplash.com/photo-1547005327-ef75a6961556?q=80&w=1200&auto=format&fit=crop"
+      image: "https://raw.githubusercontent.com/Sam-Titan/FDlite/main/Image%201.jpeg"
     },
     {
       title: "Lakshmi Centers",
       desc: "Women bring fresh milk daily to community-owned collection hubs — fair pricing, transparent records, zero middlemen.",
-      image: "https://images.unsplash.com/photo-1550583760-704c9a42172c?q=80&w=1200&auto=format&fit=crop"
+      image: "https://raw.githubusercontent.com/Sam-Titan/FDlite/main/Image%202.jpeg"
     },
     {
       title: "Pure & Direct",
       desc: "Every litre of milk represents a family's livelihood — and now, their rightful earnings go directly to them.",
-      image: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1200&auto=format&fit=crop"
+      image: "https://raw.githubusercontent.com/Sam-Titan/FDlite/main/Image%203.jpeg"
     }
   ];
 
