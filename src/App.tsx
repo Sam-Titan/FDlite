@@ -62,9 +62,9 @@ const Navbar = () => {
 
         {/* CTA Button - Right on Desktop */}
         <div className="hidden md:flex items-center gap-4 shrink-0">
-          <button className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:-translate-y-0.5">
-            Donate Now
-          </button>
+            <a href="#donate" className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full font-semibold transition-all hover:shadow-lg hover:-translate-y-0.5">
+              Donate Now
+            </a>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -90,8 +90,7 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <button className="bg-primary text-white py-3 rounded-full font-bold">Donate Now</button>
-        </motion.div>
+          <a href="#donate" onClick={() => setMobileMenuOpen(false)} className="bg-primary text-white py-3 rounded-full font-bold text-center">Donate Now</a>        </motion.div>
       )}
     </nav>
   );
@@ -113,13 +112,13 @@ const Hero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center w-full relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="w-full relative z-10"
-        >
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full relative z-10 bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-white/60"
+          >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-light text-primary text-[10px] md:text-sm font-semibold mb-6">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Women-Owned Dairy · Rural India
@@ -587,10 +586,10 @@ const DonateSection = () => {
   const [customAmount, setCustomAmount] = useState('');
 
   const tiers = [
-    { amount: 10, label: "Support 1 Woman Farmer", sub: "1 season of fair pricing" },
-    { amount: 25, label: "Support 2 Farmers", sub: "Market access for two households" },
-    { amount: 50, label: "Support 4 Farmers", sub: "Popular choice for impact", popular: true },
-    { amount: 250, label: "Entire Village Dairy Hub", sub: "Lakshmi Center, solar chilling, 50+ women" },
+    { amount: 250, label: "Support 1 Woman Farmer", sub: "1 season of fair pricing" },
+    { amount: 500, label: "Support 2 Farmers", sub: "Market access for two households" },
+    { amount: 1000, label: "Support 4 Farmers", sub: "Popular choice for impact", popular: true },
+    { amount: 5000, label: "Entire Village Dairy Hub", sub: "Lakshmi Center, solar chilling, 50+ women" },
   ];
 
   const currentAmount = customAmount ? parseInt(customAmount) : selectedTier;
@@ -634,7 +633,7 @@ const DonateSection = () => {
             <p className="text-xs md:text-base text-ink-muted mb-5 md:mb-8">100% of your donation supports women farmers directly.</p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-3 mb-5 md:mb-8">
-              {[10, 25, 50, 100, 250, 500].map((amt) => (
+              {[250, 500, 1000, 5000, 10000, 25000].map((amt) => (
                 <button 
                   key={amt}
                   onClick={() => {
