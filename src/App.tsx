@@ -553,7 +553,6 @@ const PhotoSlider = () => {
               {/* Top mask — thinner on mobile, fuller on desktop */}
               <div className="absolute top-0 left-0 right-0 h-8 md:h-16 bg-black pointer-events-none z-10" />
 
-              {/* Bottom mask */}
               {/* Bottom mask — tall enough to cover YouTube subtitle bar */}
               <div className="absolute bottom-0 left-0 right-0 h-16 md:h-20 bg-black pointer-events-none z-10" />
               {/* General dark overlay */}
