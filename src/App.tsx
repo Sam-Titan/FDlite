@@ -530,7 +530,8 @@ const PhotoSlider = () => {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto relative group">
-        <div className="aspect-[16/9] md:aspect-[21/9] rounded-2xl md:rounded-[3rem] overflow-hidden relative">
+        {/* Taller aspect ratio on mobile to prevent video being cut */}
+        <div className="aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-2xl md:rounded-[3rem] overflow-hidden relative">
           {slides.map((slide, i) => (
             <motion.div
               key={i}
@@ -539,8 +540,8 @@ const PhotoSlider = () => {
               transition={{ duration: 1 }}
               className="absolute inset-0"
             >
-              {/* Iframe wrapper — oversized and shifted up to clip YouTube's title bar */}
-              <div className="absolute -inset-x-2 -top-12 -bottom-2 pointer-events-none">
+              {/* Iframe — shifted up slightly more on desktop, minimal shift on mobile */}
+              <div className="absolute -inset-x-2 top-0 md:-top-10 -bottom-2 pointer-events-none">
                 <iframe
                   className="w-full h-full"
                   src={`https://www.youtube.com/embed/${slide.videoId}?autoplay=1&mute=1&loop=1&playlist=${slide.videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0`}
@@ -549,11 +550,11 @@ const PhotoSlider = () => {
                 />
               </div>
 
-              {/* Top mask — covers any remaining YouTube title/branding */}
-              <div className="absolute top-0 left-0 right-0 h-16 bg-black pointer-events-none z-10" />
+              {/* Top mask — thinner on mobile, fuller on desktop */}
+              <div className="absolute top-0 left-0 right-0 h-8 md:h-16 bg-black pointer-events-none z-10" />
 
               {/* Bottom mask */}
-              <div className="absolute bottom-0 left-0 right-0 h-10 bg-black pointer-events-none z-10" />
+              <div className="absolute bottom-0 left-0 right-0 h-8 md:h-10 bg-black pointer-events-none z-10" />
 
               {/* General dark overlay */}
               <div className="absolute inset-0 bg-black/25 pointer-events-none z-10" />
