@@ -554,8 +554,8 @@ const PhotoSlider = () => {
               <div className="absolute top-0 left-0 right-0 h-8 md:h-16 bg-black pointer-events-none z-10" />
 
               {/* Bottom mask */}
-              <div className="absolute bottom-0 left-0 right-0 h-8 md:h-10 bg-black pointer-events-none z-10" />
-
+              {/* Bottom mask — tall enough to cover YouTube subtitle bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-16 md:h-20 bg-black pointer-events-none z-10" />
               {/* General dark overlay */}
               <div className="absolute inset-0 bg-black/25 pointer-events-none z-10" />
 
